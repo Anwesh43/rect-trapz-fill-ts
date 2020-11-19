@@ -211,3 +211,25 @@ class RectTrapzFill {
         this.curr.startUpdating(cb)
     }
 }
+
+class Renderer {
+
+    animator : Animator = new Animator()
+    rtf : RectTrapzFill = new RectTrapzFill()
+
+    render(context : CanvasRenderingContext2D) {
+        this.rtf.draw(context)
+    }
+
+    handleTap(cb : Function) {
+        this.rtf.startUpdating(() => {
+            this.animator.start(() => {
+                cb()
+                this.rtf.update(() => {
+                    this.animator.stop()
+                    cb()
+                })
+            })
+        })
+    }
+}
