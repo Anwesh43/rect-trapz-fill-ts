@@ -49,7 +49,7 @@ class DrawingUtil {
         const tSize : number = Math.min(w, h) / tFactor 
         context.save()
         context.translate(w / 2, h / 2)
-        DrawingUtil.drawLine(context, -size / 2, h / 2, -size / 2, h / 2 - (h / 2 - tSize) * sf1)
+        DrawingUtil.drawLine(context, -size / 2, h / 2, -size / 2, h / 2 - (h / 2 + tSize) * sf1)
         DrawingUtil.drawLine(context, -size / 2, -tSize, -size / 2 + size * sf2, -tSize + tSize * sf2)
         DrawingUtil.drawLine(context, size / 2, 0, size / 2, h * 0.5 * sf3)
         context.save()
@@ -60,7 +60,7 @@ class DrawingUtil {
         context.lineTo(size / 2, h / 2)
         context.lineTo(-size / 2, h / 2)
         context.clip()
-        context.fillRect( -size / 2, h / 2 - (h / 2 + tSize) * sf4, size, (h / 2 + tSize) * sf4)
+        context.fillRect(-size / 2, h / 2 - (h / 2 + tSize) * sf4, size, (h / 2 + tSize) * sf4)
         context.restore()
         context.restore()
     }
@@ -87,6 +87,8 @@ class Stage {
     }
 
     render() {
+        this.context.fillStyle = backColor
+        this.context.fillRect(0, 0, w, h)
         this.renderer.render(this.context)
     }
 
